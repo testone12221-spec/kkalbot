@@ -150,9 +150,9 @@ def delete_product(name):
         return "something went wrong maybe you havent this in your db"
 
 def get_product_by_name(name):
-    cursor.execute("SELECT * FROM products WHERE name ILIKE %s", (f"%{name}%",))
-
+    cursor.execute("SELECT * FROM products WHERE LOWER(name) = LOWER(%s)", (name,))
     return cursor.fetchone()
+
 
 
 # --- FSM States ---
@@ -321,5 +321,6 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
 
