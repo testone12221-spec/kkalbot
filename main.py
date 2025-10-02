@@ -263,6 +263,7 @@ async def echo_handler(message: types.Message, state: FSMContext):
 
 
     if text.lower() == "set0":
+        print('sdsdsdsd')
         today = datetime.date.today().strftime("%d/%m/%Y")
         cursor.execute("UPDATE userday SET kkal=0, protein=0 WHERE date=%s", (today,))
         conn.commit()
@@ -320,4 +321,5 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 
