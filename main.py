@@ -262,6 +262,12 @@ async def echo_handler(message: types.Message, state: FSMContext):
         return
 
 
+    if text.lower() == "set0":
+        today = datetime.date.today().strftime("%d/%m/%Y")
+        cursor.execute("UPDATE userday SET kkal=0, protein=0 WHERE date=%s", (today,))
+        conn.commit()
+        await message.answer("✅ Your daily calories and protein have been reset to 0.")
+        return
 
     #/sovorakan
 
@@ -314,3 +320,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
